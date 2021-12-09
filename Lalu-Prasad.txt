@@ -1,0 +1,23 @@
+CREATE TABLE Lalu (
+     Sno INT NULL,
+     empID int not NULL,
+     EmpName varchar(15),
+     Salary int,
+     company varchar(10),
+     KEY (COmpany) USING CLUSTERED COLUMNSTORE,
+     SHARD KEY (empID)
+);
+
+
+CREATE USER lalu;
+GRANT create,insert,update,delete,drop ON lalu.* TO 'lalu'@'%';
+
+SET PASSWORD FOR 'lalu'@'%' = PASSWORD('lalu');
+
+
+GRANT ALL PRIVILEGES ON *.* TO 'lalu'@'%' IDENTIFIED BY 'lalu' WITH GRANT OPTION;
+
+
+SHOW ROLES FOR USER 'lalu'@'lalu';
+
+
